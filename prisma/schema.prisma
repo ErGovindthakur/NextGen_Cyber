@@ -50,5 +50,7 @@ model Form {
   userId      String
   user        User     @relation(fields: [userId], references: [id])
 
+  status String @default("PENDING") // PENDING | APPROVED | REJECTED
+  
   createdAt   DateTime @default(now())
 }

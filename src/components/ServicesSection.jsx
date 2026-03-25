@@ -25,10 +25,10 @@ export default function ServicesSection() {
       color: "bg-indigo-600 hover:bg-indigo-700",
     },
     {
-      title: "Bill Payments & Recharge",
+      title: "image Background Remover",
       icon:"money.png",
-      desc: "Pay Bills, Mobile, DTH Recharge",
-      btn: "Pay Now",
+      desc: "Get a High quality Image",
+      btn: "Get Now",
       color: "bg-green-600 hover:bg-green-700",
     },
   ];
