@@ -6,10 +6,12 @@ export default function ServiceCard({ title, icon, desc, btn, color }) {
   const router = useRouter();
 
   const handleClick = () => {
-    if (title === "Online Form Filling") {
-      router.push("/form");
-    }
-  };
+  if (title === "Online Form Filling") {
+    router.push("/form");
+  } else if (title === "image Background Remover") {
+    router.push("/bg-remover"); // 👈 ADD THIS
+  }
+};
 
   return (
     <div
