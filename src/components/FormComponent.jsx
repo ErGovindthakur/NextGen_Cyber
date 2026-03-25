@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function FormComponent() {
   const router = useRouter();
@@ -54,39 +55,62 @@ export default function FormComponent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex justify-center items-center p-6 text-black">
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6">
 
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          📄 Online Service Form
+      {/* 🔥 HEADER NAV */}
+      <div className="max-w-4xl mx-auto mb-6 flex justify-between items-center">
+
+        <h2 className="text-xl font-bold text-gray-800">
+          📄 Fill Your Form
         </h2>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+        <div className="flex gap-3">
 
-          <input name="name" placeholder="Full Name" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
-          <input name="fatherName" placeholder="Father Name" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
+          <Link href="/">
+            <button className="bg-white border px-4 py-2 rounded-lg shadow hover:bg-gray-100 transition">
+              🏠 Home
+            </button>
+          </Link>
 
-          <input name="motherName" placeholder="Mother Name" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
-          <input name="email" placeholder="Email" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
+          <Link href="/dashboard">
+            <button className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow hover:bg-black transition">
+              📊 Dashboard
+            </button>
+          </Link>
 
-          <input name="phone" placeholder="Phone" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
-          <input name="aadhaar" placeholder="Aadhaar" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
+        </div>
 
-          <input name="pan" placeholder="PAN" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
-          <input name="pincode" placeholder="Pincode" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
+      </div>
 
-          <input name="city" placeholder="City" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
-          <input name="state" placeholder="State" onChange={handleChange} className="input outline-none border border-black rounded-[3px] px-3 py-2" />
+      {/* 🔥 FORM CARD */}
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+
+        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 text-black">
+
+          <input name="name" placeholder="Full Name" onChange={handleChange} className="input border p-2 rounded-md" />
+          <input name="fatherName" placeholder="Father Name" onChange={handleChange} className="input border p-2 rounded-md" />
+
+          <input name="motherName" placeholder="Mother Name" onChange={handleChange} className="input border p-2 rounded-md" />
+          <input name="email" placeholder="Email" onChange={handleChange} className="input border p-2 rounded-md" />
+
+          <input name="phone" placeholder="Phone" onChange={handleChange} className="input border p-2 rounded-md" />
+          <input name="aadhaar" placeholder="Aadhaar" onChange={handleChange} className="input border p-2 rounded-md" />
+
+          <input name="pan" placeholder="PAN" onChange={handleChange} className="input border p-2 rounded-md" />
+          <input name="pincode" placeholder="Pincode" onChange={handleChange} className="input border p-2 rounded-md" />
+
+          <input name="city" placeholder="City" onChange={handleChange} className="input border p-2 rounded-md" />
+          <input name="state" placeholder="State" onChange={handleChange} className="input border p-2 rounded-md" />
 
           <textarea
             name="address"
             placeholder="Full Address"
             onChange={handleChange}
-            className="col-span-2 input outline-none border border-black rounded-[3px] px-3 py-2"
+            className="col-span-2 border p-2 rounded-md"
           />
 
-          {/* File Uploads */}
-          <div className="col-span-2 grid grid-cols-3 gap-4">
+          {/* 📂 FILE UPLOADS */}
+          <div className="col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
 
             <div>
               <label className="text-sm font-medium">Additional Document</label>
@@ -105,7 +129,8 @@ export default function FormComponent() {
 
           </div>
 
-          <button className="col-span-2 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold">
+          {/* 🔥 SUBMIT */}
+          <button className="col-span-2 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold mt-4">
             Submit Form 🚀
           </button>
 

@@ -1,39 +1,3 @@
-// // components/ServiceCard.jsx
-
-// export default function ServiceCard({ title,icon, desc, btn, color }) {
-//   return (
-//     <div className="bg-[#f1f5f9] rounded-2xl shadow-sm border border-gray-200 p-6 text-center hover:shadow-md transition duration-300">
-      
-//       {/* Icon */}
-//       <div className="flex justify-center mb-4">
-//         <img
-//           src={icon}
-//           alt="service"
-//           className="w-20 h-20 object-contain"
-//         />
-//       </div>
-
-//       {/* Title */}
-//       <h3 className="text-sm font-semibold text-gray-800 mb-1">
-//         {title}
-//       </h3>
-
-//       {/* Description */}
-//       <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-//         {desc}
-//       </p>
-
-//       {/* Button */}
-//       <button
-//         className={`text-xs font-semibold px-4 py-2 rounded-md text-white ${color} shadow-sm`}
-//       >
-//         {btn}
-//       </button>
-//     </div>
-//   );
-// }
-
-
 "use client";
 
 import { useRouter } from "next/navigation";

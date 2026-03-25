@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
+import cloudinary from "@/lib/cloudinary";
 
 export async function POST(req) {
   const user = await currentUser();
@@ -17,6 +18,28 @@ export async function POST(req) {
   if (!existingUser) {
     return new Response("User not found", { status: 404 });
   }
+
+  // 🔥 Upload function
+  const uploadFile = async (file) => {
+    if (!file) return "";
+
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ folder: "nextgen" }, (err, result) => {
+          if (err) reject(err);
+          else resolve(result.secure_url);
+        })
+        .end(buffer);
+    });
+  };
+
+  // 🔥 Upload all files
+  const fileUrl = await uploadFile(formData.get("file"));
+  const photoUrl = await uploadFile(formData.get("userPhoto"));
+  const signUrl = await uploadFile(formData.get("userSign"));
 
   await prisma.form.create({
     data: {
@@ -36,9 +59,9 @@ export async function POST(req) {
 
       service: formData.get("service"),
 
-      file: formData.get("file")?.name || "",
-      userPhoto: formData.get("userPhoto")?.name || "",
-      userSign: formData.get("userSign")?.name || "",
+      file: fileUrl,
+      userPhoto: photoUrl,
+      userSign: signUrl,
 
       userId: existingUser.id,
     },
