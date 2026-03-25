@@ -1,10 +1,20 @@
-// components/HeroSection.jsx
 "use client";
 
-import { FaPhoneAlt, FaFileAlt, FaIdCard, FaCreditCard, FaPrint } from "react-icons/fa";
+import { useUser, SignInButton, UserButton } from "@clerk/nextjs";
+
+import {
+  FaPhoneAlt,
+  FaFileAlt,
+  FaIdCard,
+  FaCreditCard,
+  FaPrint,
+} from "react-icons/fa";
+
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
+  const { isSignedIn } = useUser();
+
   return (
     <div className="relative text-white overflow-hidden">
 
@@ -22,7 +32,10 @@ export default function HeroSection() {
 
       {/* Navbar */}
       <div className="relative z-10 flex justify-between items-center px-8 py-4 bg-white/80 backdrop-blur-lg shadow-sm">
-        <h1 className="font-bold text-lg text-black">XYZ CYBER CAFE</h1>
+
+        <h1 className="font-bold text-lg text-black">
+          XYZ CYBER CAFE
+        </h1>
 
         <ul className="hidden md:flex gap-6 text-sm font-medium text-gray-700">
           <li className="hover:text-blue-600 cursor-pointer">Home</li>
@@ -31,9 +44,33 @@ export default function HeroSection() {
           <li className="hover:text-blue-600 cursor-pointer">Contact</li>
         </ul>
 
-        <div className="flex items-center gap-2 text-sm text-green-600">
-          <FaPhoneAlt />
-          <span>+91 XXXXX XXXXX</span>
+        {/* 🔥 Auth Section */}
+        <div className="flex items-center gap-4">
+
+          {!isSignedIn ? (
+            <>
+              <div className="flex items-center gap-2 text-sm text-green-600">
+                <FaPhoneAlt />
+                <span>+91 XXXXX XXXXX</span>
+              </div>
+
+              <SignInButton mode="modal">
+                <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm">
+                  Login
+                </button>
+              </SignInButton>
+            </>
+          ) : (
+            <UserButton
+              afterSignOutUrl="/sign-in"
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10",
+                },
+              }}
+            />
+          )}
+
         </div>
       </div>
 
@@ -58,16 +95,16 @@ export default function HeroSection() {
               Get Started
             </button>
 
-            <button className="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">
-              Login
-            </button>
+            <SignInButton mode="modal">
+              <button className="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">
+                Login
+              </button>
+            </SignInButton>
           </div>
         </motion.div>
       </div>
 
-      {/* 🔥 Floating Icons (Premium Glass Style) */}
-
-      {/* Document */}
+      {/* Floating Icons */}
       <motion.div
         className="absolute top-28 right-40 bg-white/20 backdrop-blur-md p-3 rounded-xl text-white text-xl shadow-lg"
         animate={{ y: [0, -12, 0] }}
@@ -76,7 +113,6 @@ export default function HeroSection() {
         <FaFileAlt />
       </motion.div>
 
-      {/* ID Card */}
       <motion.div
         className="absolute top-44 right-16 bg-white/20 backdrop-blur-md p-3 rounded-xl text-white text-xl shadow-lg"
         animate={{ y: [0, 10, 0] }}
@@ -85,7 +121,6 @@ export default function HeroSection() {
         <FaIdCard />
       </motion.div>
 
-      {/* Payment */}
       <motion.div
         className="absolute bottom-40 right-52 bg-white/20 backdrop-blur-md p-3 rounded-xl text-white text-xl shadow-lg"
         animate={{ y: [0, -8, 0] }}
@@ -94,7 +129,6 @@ export default function HeroSection() {
         <FaCreditCard />
       </motion.div>
 
-      {/* Print */}
       <motion.div
         className="absolute bottom-28 right-20 bg-white/20 backdrop-blur-md p-3 rounded-xl text-white text-xl shadow-lg"
         animate={{ y: [0, 12, 0] }}
@@ -116,6 +150,7 @@ export default function HeroSection() {
           />
         </svg>
       </div>
+
     </div>
   );
 }
