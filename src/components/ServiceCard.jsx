@@ -10,6 +10,8 @@ export default function ServiceCard({ title, icon, desc, btn, color }) {
     router.push("/form");
   } else if (title === "image Background Remover") {
     router.push("/bg-remover"); // 👈 ADD THIS
+  }else if (title === "Build Your Resume") {
+    router.push("/resume-builder"); // ✅ ADD THIS
   }
 };
 
