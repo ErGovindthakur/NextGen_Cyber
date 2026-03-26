@@ -18,10 +18,10 @@ export default function ServicesSection() {
       color: "bg-blue-600 hover:bg-blue-700",
     },
     {
-      title: "Print & Scan Request",
+      title: "Build Your Resume",
       icon:"print.png",
-      desc: "Upload Files for Print & Scan",
-      btn: "Upload File",
+      desc: "Create a Professional Resume",
+      btn: "Create Resume",
       color: "bg-indigo-600 hover:bg-indigo-700",
     },
     {
